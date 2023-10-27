@@ -9,14 +9,74 @@ export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
+  const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
+
+  const correctWord = "RIGHT" ;
+
+  const onEnter = () => {
+    if (currAttempt.letter !== 5) return;
+
+    let currWord = "";
+    for (let i = 0; i < 5; i++) {
+      currWord += board[currAttempt.attempt][i];
+    }
+    // if (wordSet.has(currWord.toLowerCase())) {
+    //   setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
+    // } else {
+    //   alert("Word not found");
+    // }
+
+    // if (currWord === correctWord) {
+    //   setGameOver({ gameOver: true, guessedWord: true });
+    //   return;
+    // }
+    // console.log(currAttempt);
+    // if (currAttempt.attempt === 5) {
+    //   setGameOver({ gameOver: true, guessedWord: false });
+    //   return;
+    // }
+  };
+
+  const onDelete = () => {
+    if (currAttempt.letter === 0) return;
+    const newBoard = [...board];
+    newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
+    setBoard(newBoard);
+    setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
+  };
+
+  const onSelectLetter = (key) => {
+    if (currAttempt.letter > 4) return;
+    const newBoard = [...board];
+    newBoard[currAttempt.attempt][currAttempt.letter] = key;
+    setBoard(newBoard);
+    setCurrAttempt({
+      attempt: currAttempt.attempt,
+      letter: currAttempt.letter + 1,
+    });
+  };
+
   return (
     <div className="App">
       <nav>
         <h1>WORDLE</h1>
       </nav>
-      <AppContext.Provider value={{ board , setBoard }}>
-        <Board />
-        <Keyboard />
+      <AppContext.Provider
+        value={{
+          board,
+          setBoard,
+          currAttempt,
+          setCurrAttempt,
+          onSelectLetter,
+          onDelete,
+          onEnter,
+          correctWord
+        }}
+      >
+        <div className="game">
+          <Board />
+          <Keyboard />
+        </div>
       </AppContext.Provider>
     </div>
   );
