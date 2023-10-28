@@ -26,9 +26,21 @@ export const boardDefault = [
 //   return { wordSet, todaysWord, array };
 // };
 
-export const generateWordFromJSON = async () => {
-  let wordArr;
-  let todaysWord;
+// const sampleData = [
+//   "SCOWL",
+//   "WAGER",
+//   "TYING",
+//   "SWARM",
+//   "SHADY",
+//   "LYING",
+//   "HEADY",
+//   "FLUKE",
+//   "BLAND",
+// ];
+
+// export const generateWordFromJSON = async () => {
+//   let wordArr;
+//   let todaysWord;
   // await fetch(wordBank)
   //   .then((response) => response.json())
   //   .then((result) => {
@@ -37,15 +49,16 @@ export const generateWordFromJSON = async () => {
   //     todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)];
   //     console.log(wordArr)
   //   });
-
-  const response = await fetch(wordBank);
-  console.log(response)
-  // const resultString = await response.stringify();
-  // const result = JSON.parse(resultString);
-  // console.log(result)
-  return { wordArr, todaysWord };
-}
-
+//   return { wordArr, todaysWord };
+// };
 
 // let jsonString = JSON.stringify(jsonFilePath);
 // let jsonData = JSON.parse(jsonString);
+
+
+export const generateWordFromJSON = async () => {
+  const wordList = wordBank.data ;
+  const todaysWord = wordList[Math.floor(Math.random() * wordList.length)];
+  console.log(wordList , todaysWord)
+  return { wordList, todaysWord };
+}

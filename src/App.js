@@ -19,13 +19,24 @@ function App() {
     guessedWord: false,
   });
 
-  useEffect(() => {
-    generateWordFromJSON().then((words) => {
-      // setWordSet(words.wordSet);
-      setWordArr(words.wordArr);
-      setCorrectWord(words.todaysWord);
-    });
-  }, []);
+  // useEffect(() => {
+  //   generateWordFromJSON().then((words) => {
+  //     // setWordSet(words.wordSet);
+  //     setWordArr(words.wordArr);
+  //     setCorrectWord(words.todaysWord);
+  //   });
+  // }, []);
+
+useEffect(() => {
+  generateWordFromJSON().then((result)=>{ 
+    setCorrectWord(result.todaysWord) ;
+    setWordArr(result.wordList) ;
+   })
+  // console.log(todaysWord, wordList)
+}, [])
+
+
+  // const correctWord = "HELLO" ;
 
   const onEnter = () => {
     if (currAttempt.letter !== 5) return;
@@ -47,7 +58,7 @@ function App() {
     if(wordArr.includes(currWord)){
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     }else {
-      alert("Word not found");
+      alert(currWord + " : Word not found");
     }
 
     // if (currentWord === correctWord) {
