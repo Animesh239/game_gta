@@ -1,16 +1,17 @@
 import "./App.css";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
-import { boardDefault, generateWordSet } from "./Words";
+import { boardDefault, generateWordFromJSON} from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
 
 export const AppContext = createContext();
 
-function App() {
+function App() { 
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
-  const [wordSet, setWordSet] = useState(new Set());
+  // const [wordSet, setWordSet] = useState(new Set());
+  const [wordArr, setWordArr] = useState([]);
   const [correctWord, setCorrectWord] = useState("");
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameOver, setGameOver] = useState({
@@ -19,8 +20,9 @@ function App() {
   });
 
   useEffect(() => {
-    generateWordSet().then((words) => {
-      setWordSet(words.wordSet);
+    generateWordFromJSON().then((words) => {
+      // setWordSet(words.wordSet);
+      setWordArr(words.wordArr);
       setCorrectWord(words.todaysWord);
     });
   }, []);
@@ -32,14 +34,23 @@ function App() {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
-    if (wordSet.has(currWord.toLowerCase())) {
-      console.log(currWord)
+    // let currentWord = currWord.toLowerCase() + " " ; 
+    console.log(currWord)
+    console.log(correctWord)
+    // if (wordSet.has(currWord.toLowerCase())) {
+    // if (wordSet.has(currentWord)) {
+    //   setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
+    // } else {
+    //   alert("Word not found");
+    // }
+
+    if(wordArr.includes(currWord)){
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
-    } else {
-     
+    }else {
       alert("Word not found");
     }
 
+    // if (currentWord === correctWord) {
     if (currWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
