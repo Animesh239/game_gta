@@ -18,6 +18,9 @@ function App() {
     gameOver: false,
     guessedWord: false,
   });
+const [letterColorState, setLetterColorState] = useState("");
+const [corrects, setCorrects] = useState([]);
+const [almosts, setAlmosts] = useState([]);
 
   // useEffect(() => {
   //   generateWordFromJSON().then((words) => {
@@ -110,6 +113,12 @@ useEffect(() => {
           setDisabledLetters,
           disabledLetters,
           gameOver,
+          letterColorState,
+          setLetterColorState,
+          corrects,
+          setCorrects,
+          almosts,
+          setAlmosts,
         }}
       >
         <div className="game">

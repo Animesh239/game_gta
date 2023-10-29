@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 
 function Key({ keyVal, bigKey, disabled }) {
-  const { gameOver, onSelectLetter, onDelete, onEnter } =
+  const { gameOver, onSelectLetter, onDelete, onEnter, letterColorState } =
     useContext(AppContext);
 
   const selectLetter = () => {
@@ -15,10 +15,19 @@ function Key({ keyVal, bigKey, disabled }) {
       onSelectLetter(keyVal);
     }
   };
+
+  const keyClass = disabled
+    ? "error"
+    : letterColorState === "correct"
+    ? "correct"
+    : letterColorState === "almost"
+    ? "almost"
+    : "";
+
   return (
     <div
-      className="key"
-      id={bigKey ? "big" : disabled ? "disabled" : undefined}
+      className={`key`}
+      id={bigKey ? "big" : keyClass}
       onClick={selectLetter}
     >
       {keyVal}

@@ -64,17 +64,7 @@
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  #correct {
-    background-color: #528d4e;
-  }
-  
-  #almost {
-    background-color: #b49f39;
-  }
-  
-  #error {
-    background-color: #3a393c;
-  }
+ 
   
   .keyboard {
     width: 700px;
@@ -123,5 +113,17 @@
     width: 100px;
   }
   #disabled {
-    background-color: #3a393c;
+    background-color: #353535;
+  }
+  
+  #correct {
+    background-color: #528d4e;
+  }
+  
+  #almost {
+    background-color: #b49f39;
+  }
+  
+  #error {
+    background-color: red;
   }

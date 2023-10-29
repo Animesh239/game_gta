@@ -2,8 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from "../App";
 
 function Letter({ letterPos, attemptVal }) {
-  const { board, setDisabledLetters, currAttempt, correctWord } =
+  const { board, setDisabledLetters, currAttempt, correctWord, setLetterColorState ,corrects,
+    setCorrects,
+    almosts,
+    setAlmosts,  } =
     useContext(AppContext);
+    // const [letterColorState, setLetterColorState] = useState("");
+
   const letter = board[attemptVal][letterPos];
   const correct = correctWord.toUpperCase()[letterPos] === letter;
   const almost =
@@ -16,6 +21,15 @@ function Letter({ letterPos, attemptVal }) {
     if (letter !== "" && !correct && !almost) {
       console.log(letter);
       setDisabledLetters((prev) => [...prev, letter]);
+      setLetterColorState(letterState)
+    }else if(correct){
+      setCorrects((prev) => [...prev, letter]);
+      console.log(corrects)
+    }else if(almost){
+      setAlmosts((prev) => [...prev, letter]);
+      console.log(almosts)
+    }else{
+      return console.log("big errr") ;
     }
   }, [currAttempt.attempt]);
   return (
