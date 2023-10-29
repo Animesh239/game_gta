@@ -59,6 +59,7 @@ export const boardDefault = [
 export const generateWordFromJSON = async () => {
   const wordList = wordBank.data ;
   const todaysWord = wordList[Math.floor(Math.random() * wordList.length)];
-  console.log(wordList , todaysWord)
+  console.log(wordList )
+  // console.log(todaysWord)
   return { wordList, todaysWord };
 }

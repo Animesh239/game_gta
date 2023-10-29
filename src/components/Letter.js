@@ -19,17 +19,17 @@ function Letter({ letterPos, attemptVal }) {
 
   useEffect(() => {
     if (letter !== "" && !correct && !almost) {
-      console.log(letter);
+      // console.log(letter);
       setDisabledLetters((prev) => [...prev, letter]);
       setLetterColorState(letterState)
     }else if(correct){
       setCorrects((prev) => [...prev, letter]);
-      console.log(corrects)
+      // console.log(corrects)
     }else if(almost){
       setAlmosts((prev) => [...prev, letter]);
-      console.log(almosts)
+      // console.log(almosts)
     }else{
-      return console.log("big errr") ;
+      // return console.log("big errr") ;
     }
   }, [currAttempt.attempt]);
   return (
