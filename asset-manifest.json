@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/game_gta/static/css/main.ac0f38e6.css",
+    "main.js": "/game_gta/static/js/main.44073845.js",
+    "index.html": "/game_gta/index.html",
+    "main.ac0f38e6.css.map": "/game_gta/static/css/main.ac0f38e6.css.map",
+    "main.44073845.js.map": "/game_gta/static/js/main.44073845.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac0f38e6.css",
+    "static/js/main.44073845.js"
+  ]
+}
